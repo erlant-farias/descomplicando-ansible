@@ -1,0 +1,5 @@
+[webservers]
+hostname-01
+
+[db]
+hostname-02

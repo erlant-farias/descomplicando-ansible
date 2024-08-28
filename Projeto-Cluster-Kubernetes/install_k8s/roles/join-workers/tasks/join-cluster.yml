@@ -1,0 +1,6 @@
+- name:
+  debug:
+    msg: "[WORKER] K8S_TOKEN_HOLDER - O token é {{ hostvars['K8S_TOKEN_HOLDER']['token'] }}"
+- name:     
+  debug:
+    msg: "[WORKER] K8S_TOKEN_HOLDER - O hash é {{ hostvars['K8S_TOKEN_HOLDER']['hash'] }}" 

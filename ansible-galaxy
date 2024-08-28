@@ -1,0 +1,2 @@
+Executar este comando para a criação automatica das roles.
+ansible-galaxy init criando-instancias

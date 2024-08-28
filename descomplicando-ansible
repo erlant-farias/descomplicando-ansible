@@ -1,0 +1,92 @@
+Day-01:
+
+Instalação do Ansible:
+
+sudo apt update -y
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible -y
+
+
+    -> path: cd /etc/apt/sources.list.d/
+    -> ls
+    -> cat ansible-ubuntu-bionic.list
+
+Configurar os hosts para poder utilizar os hostnames das VMs:
+
+sudo vim /etc/hosts
+    127.0.0.1 localhost
+    192.168.1.1 hostname-01
+    192.168.1.2 hostname-02
+
+Alterar permissões da chave ssh:
+chmod 400 ansible.pem 
+
+Copiar a chave ssh para a VM com Ansible:
+scp -i ansible-pem ansible.pem ubuntu@192.168.1.2:/tmp (usuario do pc destino)
+
+Se conectar via ssh:
+ssh -i ansible.pem hostname01
+
+Caso esteja usando uma chave ssh fora da aws:
+ssh-copy-id id_rsa ubuntu@192.168.1.2 (usuario do pc origem)
+
+Criar um outro agente para o bash:
+ssh-agent bash
+ssh-add ansible.pem
+
+ssh hostname-01
+
+Criar um arquivo hosts:
+    touch hosts
+        Colocar os hostnames no arquivo.
+            vim hosts
+            hostname-01
+            hostname-02
+
+Verificar o andamento:
+ps -efwww
+
+Executar playbook:
+ansible-playbook -i hosts meu_primeiro_playbook.yaml
+
+
+Day-02:
+
+Ansible Galaxy:
+
+    No diretorio:
+
+ansible-galaxy init criando-instancias
+ansible-galaxy init criando-security-group
+
+
+Instalar o aws cli para gerenciamento das credenciais.
+
+Após instalar:
+
+Utilizar o seguinte comando:
+aws configure
+
+Na home vai ser criado um .aws, entre no diretorio e edite o credentials:
+[default] -> [giropops]
+
+Antes de rodar o comando:
+ansible-playbook -i hosts main.yml 
+
+    Instalar o pip:
+    sudo apt install python3-pip
+
+    Instalar o boto:
+    sudo apt install python3-boto3
+
+
+
+Como instalar o Weavenet:
+
+Pesquisar por Weave net install kubernetes: 
+$ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+
+
+teste

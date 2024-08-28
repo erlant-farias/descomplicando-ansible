@@ -1,0 +1,21 @@
+modulo ping:
+ansible -i hosts all -m ping
+
+modulo apt:
+ansible -i hosts hostname-01 -m apt -a "name=cmatrix state=present" -b       (become user sudo***)
+
+ansible -i hosts hostname-01 -m apt -a "update_cache=yes name=cmatrix state=present" -k (pede o password do usuario)  
+
+modulo shell:
+ansible -i hosts hostname-02 -m shell -a "ifconfig eth0"
+
+modulo copy:
+ansible -i hosts hostname-02 -m copy -a "src=teste.txt dest=/tmp"
+
+modulo git:
+ansible -i hosts hostname-02 -m git -a "repo=https://ip dest=/home/ubuntu/teste-git"
+
+modulo setup:
+ansible -i hosts hostname-02 -m setup (busca os facts do host)
+ansible -i hosts all -m setup -a "filter=ansible_distribution"
+ansible -i hosts all -m setup -a "filter=node_name"
